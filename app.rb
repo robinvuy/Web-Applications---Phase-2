@@ -2,9 +2,9 @@ require 'sinatra/base'
 
 
 class Application < Sinatra::Base 
-  get '/names' do
-    return "Julia, Mary, Karim"
-
+  post '/sort-names' do
+    name = params[:names].split(",")
+    return name.sort.join(",")
   end
 
 end
@@ -17,7 +17,10 @@ end
   
   
   
-  
+  # get '/names' do
+  #   return "Julia, Mary, Karim"
+
+  # end
   
   
   # get '/hello' do

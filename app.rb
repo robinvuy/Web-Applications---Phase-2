@@ -1,11 +1,28 @@
 require 'sinatra/base'
+require "sinatra/reloader"
 
 
 class Application < Sinatra::Base 
+  configure :development do
+    register Sinatra::Reloader
+  end
+  
+  get '/hello' do
+    return erb(:index)
+  end
+
+
   post '/sort-names' do
     name = params[:names].split(",")
     return name.sort.join(",")
   end
+
+  get '/names' do
+    return "Julia, Mary, Karim"
+
+  end
+
+
 
 end
   
@@ -17,16 +34,10 @@ end
   
   
   
-  # get '/names' do
-  #   return "Julia, Mary, Karim"
-
-  # end
   
   
-  # get '/hello' do
-  #   name = params[:name]
-  #   return "Hello #{name}"
-  # end
+  
+  
 
   # post '/submit' do
   #   name = params[:name]

@@ -3,7 +3,7 @@
 
 require 'spec_helper'
 require 'rack/test'
-require_relative '../app'
+require './app'
 
 
 describe Application do
@@ -12,7 +12,7 @@ describe Application do
   let(:app) { Application.new }
 
   context "GET /names" do
-    xit "returns 200 ok with Julia, Mary, Karim" do
+    it "returns 200 ok with Julia, Mary, Karim" do
       response = get('/names')
       expect(response.status).to eq(200)
       expect(response.body).to eq('Julia, Mary, Karim')
@@ -24,6 +24,13 @@ describe Application do
       response = post('/sort-names?names=Joe,Alice,Zoe,Julia,Kieran')
       expect(response.status).to eq(200)
       expect(response.body).to eq('Alice,Joe,Julia,Kieran,Zoe')
+    end
+  end
+
+  context "GET /hello" do
+    it "returns hello given name" do
+      response = get('/hello')
+      expect(response.body).to include('<h1>Hello!</h1>')
     end
   end
   
